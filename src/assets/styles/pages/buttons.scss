@@ -1,0 +1,40 @@
+.btn-main {
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-main:active {
+  outline: none;
+}
+
+.todo,
+.inProgress,
+.done,
+.statusActive,
+.statusNotActive {
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.todo {
+  background-color: #beb5ff;
+}
+
+.inProgress {
+  background-color: #EF9B28;
+}
+
+.done {
+  background-color: #009247;
+}
+
+.statusActive {
+  background-color: #009247;
+}
+
+.statusNotActive {
+  background-color: rgba(146, 46, 37, 0.7);
+}

@@ -1,0 +1,43 @@
+@import 'pages/auth';
+@import 'pages/colors';
+@import 'pages/inputs';
+@import 'pages/buttons';
+@import 'pages/table';
+@import 'pages/fonts';
+@import 'pages/ngx-drop';
+
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(221, 221, 221);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--bg-ternary-color);
+  border-radius: 5px;
+}

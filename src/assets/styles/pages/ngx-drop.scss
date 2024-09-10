@@ -1,0 +1,29 @@
+ngx-dropzone {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  border-color: var(--main-color) !important;
+  overflow: hidden !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+}
+
+ngx-dropzone-preview {
+  height: 100% !important;
+  min-height: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+ngx-dropzone-image-preview {
+  height: 120px !important;
+  min-height: 120px !important;
+  margin: 0 !important;
+}
+
+
+ngx-dropzone-remove-badge {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

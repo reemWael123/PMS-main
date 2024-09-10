@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+@include mat.core();
+$PMS-primary: mat.define-palette(mat.$amber-palette, 800);
+$PMS-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$PMS-warn: mat.define-palette(mat.$red-palette);
+$PMS-theme: mat.define-light-theme((color: (primary: $PMS-primary,
+                accent: $PMS-accent,
+                warn: $PMS-warn,
+            )));
+
+@include mat.all-component-themes($PMS-theme);
+
+@import 'assets/styles/layout';

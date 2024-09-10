@@ -1,0 +1,65 @@
+<section>
+  <div class="bg-white d-flex align-items-center" style="height: 109px">
+    <div class="p-3">
+      <p class="d-flex align-items-center">
+        <button mat-button routerLink="/dashboard/manager/users">
+          <mat-icon>chevron_left</mat-icon>
+          <span class="ms-2">View All Users</span>
+        </button>
+      </p>
+      <h3 class="fs-5 fw-semibold px-3">view user</h3>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 mx-auto">
+        <div class="addEditView-card shadow p-4">
+          <div class="d-flex justify-content-center">
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label class="main-color">
+                <mat-icon matSuffix>photo_camera</mat-icon>
+              </ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+              >
+                <ngx-dropzone-label> </ngx-dropzone-label>
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+          <form [formGroup]="userform" [ariaDisabled]="true" class="mt-5">
+            <div class="row justify-content-center">
+              <div class="col-md-5">
+                <mat-form-field class="w-100">
+                  <mat-label>user name </mat-label>
+                  <input matInput formControlName="userName" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-5">
+                <mat-form-field class="w-100">
+                  <mat-label>email</mat-label>
+                  <input matInput formControlName="email" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-5">
+                <mat-form-field class="w-100">
+                  <mat-label>country </mat-label>
+                  <input matInput formControlName="country" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-5">
+                <mat-form-field class="w-100">
+                  <mat-label>phone</mat-label>
+                  <input matInput formControlName="phoneNumber" />
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

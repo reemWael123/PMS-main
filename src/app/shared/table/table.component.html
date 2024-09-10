@@ -1,0 +1,116 @@
+<div class="table-responsive overflow-x-auto">
+  <table class="table table-striped m-0">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headList" [ngClass]="{frozen : head.keyName == 'actions'}">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+            <span>{{ head.headName }}</span>
+            <span
+              *ngIf="
+                head.keyName !== 'actions' && head.keyName !== 'isActivated'
+              "
+            >
+              <a (click)="sortData(head.keyName, 'asc')">
+                <mat-icon matSuffix class="main-color pointer"
+                  >arrow_drop_up</mat-icon
+                >
+              </a>
+              <a (click)="sortData(head.keyName, 'desc')">
+                <mat-icon matSuffix class="main-color pointer"
+                  >arrow_drop_down</mat-icon
+                >
+              </a>
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of gridData">
+        <td *ngFor="let head of headList" [ngClass]="{frozen : head.keyName == 'actions'}">
+          <ng-container *ngIf="head.keyName !== 'actions'">
+            <ng-container *ngIf="head.keyName.includes('Date'); else notDate">
+              {{ item[head.keyName] | date : "dd/MM/yyyy" }}
+            </ng-container>
+
+            <ng-template #notDate>
+              <ng-container
+                *ngIf="head.keyName === 'isActivated'; else noIsActive"
+              >
+                <span
+                  [ngClass]="{
+                    statusActive: item[head.keyName] == true,
+                    statusNotActive: item[head.keyName] == false
+                  }"
+                >
+                  {{ item[head.keyName] ? "Active" : "Not Active" }}
+                </span>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #noIsActive>
+              <ng-container *ngIf="head.keyName === 'status'; else defaultText">
+                <span
+                  [ngClass]="{
+                    todo: item[head.keyName] == 'ToDo',
+                    inProgress: item[head.keyName] == 'InProgress',
+                    done: item[head.keyName] == 'Done',
+                  }"
+                >
+                  {{ item[head.keyName] }}
+                </span>
+              </ng-container>
+            </ng-template>
+
+            <ng-template #defaultText>
+              {{ getNestedProperty(item, head.keyName) }}
+            </ng-template>
+          </ng-container>
+
+          <ng-container *ngIf="head.keyName === 'actions'">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                *ngFor="let action of head.actionsData"
+                (click)="handleAction(action.key, item)"
+              >
+                <mat-icon
+                  class="main-color"
+                  [ngClass]="{
+                    dangerColor: action.key == 'delete' || action.key == 'block'
+                  }"
+                  >{{ action.icon }}</mat-icon
+                >
+                <span
+                  class="main-color"
+                  [ngClass]="{
+                    dangerColor:
+                      action.key == 'delete' ||
+                      action.key == 'block' ||
+                      action.key == 'un block'
+                  }"
+                  >{{
+                    item.isActivated === false && action.key === "block"
+                      ? "Un Block"
+                      : (action.key | titlecase)
+                  }}</span
+                >
+              </button>
+            </mat-menu>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="gridData.length === 0" class="text-center py-3">
+  <img src="../../../../../assets/images/no-data.png" alt="no-data" />
+</div>

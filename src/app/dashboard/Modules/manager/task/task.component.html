@@ -1,0 +1,79 @@
+<section class="bg-gray-color pb-5">
+  <div
+    class="row m-0 justify-content-between align-items-center bg-second-color p-4"
+  >
+    <div class="col-6">
+      <h3 class="default-color mb-0">Tasks</h3>
+    </div>
+    <div class="col-3">
+      <button
+        class="w-100 btn-main bg-main-color second-color d-flex align-item-center justify-content-center gap-3"
+        routerLink="add-new"
+      >
+        <mat-icon matSuffix>add_circle</mat-icon>
+        Add new task
+      </button>
+    </div>
+  </div>
+  <div class="container-fluid mt-3">
+    <div class="box-shadow rounded-3 overflow-hidden box-table">
+      <div
+        class="bg-second-color d-flex align-items-center justify-content-between p-4"
+      >
+        <mat-form-field class="w-50 main-color rounded-4 overflow-hidden">
+          <mat-label>Search here</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Search here"
+            [(ngModel)]="searchKey"
+            (keydown.enter)="getTasks()"
+          />
+          <mat-hint class="default-color">Please press enter</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="fill"
+          class="col-4 main-color rounded-4 overflow-hidden"
+        >
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="searchStatus" (selectionChange)="getTasks()">
+            <mat-option value="">All</mat-option>
+            <mat-option value="ToDo">ToDO</mat-option>
+            <mat-option value="InProgress">InProgress</mat-option>
+            <mat-option value="Done">Done</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <a
+          class="pointer d-flex align-items-center"
+          (click)="reset()"
+          *ngIf="searchKey !== '' || searchStatus !== ''"
+        >
+          <mat-icon matSuffix class="main-color">restart_alt</mat-icon>
+          <span class="default-color">Reset</span>
+        </a>
+      </div>
+
+      <app-table
+        [headList]="headArray"
+        [gridList]="tasksList"
+        (actionClick)="onActionClick($event.action, $event.item)"
+      >
+      </app-table>
+
+      <mat-paginator
+        *ngIf="tasksList"
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="tasksList.totalNumberOfRecords"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>

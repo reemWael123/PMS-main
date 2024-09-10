@@ -1,0 +1,205 @@
+<section
+  class="auth bg-register d-flex align-items-center justify-content-center"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center my-2">
+          <img src="../../../../assets/images/logo.png" alt="logo" />
+        </div>
+        <div class="register-card position-relative row justify-content-center">
+          <div class="col-11">
+             <span class="text-white-50">Welcome to PMS!</span>
+            <h3 class="main-color title-auth">Create New Account</h3>
+
+            <div class="d-flex justify-content-center">
+              <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label class="main-color">
+                  <mat-icon matSuffix>photo_camera</mat-icon>
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of files"
+                  [file]="f"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                >
+                  <ngx-dropzone-label> </ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+
+            <form
+              [formGroup]="registerForm"
+              class="row justify-content-between"
+              (ngSubmit)="onRegister(registerForm)"
+            >
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>User Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="userName"
+                    placeholder="Enter your name"
+                  />
+                  <mat-icon matSuffix class="text-white-50">account_circle</mat-icon>
+                  <mat-error
+                    *ngIf="userName?.hasError('required') && userName?.touched"
+                  >
+                    Username is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>E-mail</mat-label>
+                  <input
+                    matInput
+                    formControlName="email"
+                    placeholder="Enter your e-mail"
+                  />
+                  <mat-icon matSuffix class="text-white-50">mail</mat-icon>
+                  <mat-error
+                    *ngIf="email?.hasError('required') && email?.touched"
+                  >
+                    Email is required.
+                  </mat-error>
+                  <mat-error *ngIf="email?.hasError('email') && email?.touched">
+                    Email is not valid.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>Country</mat-label>
+                  <input
+                    matInput
+                    formControlName="country"
+                    placeholder="Enter your country"
+                  />
+                  <mat-icon matSuffix class="text-white-50">public</mat-icon>
+                  <mat-error
+                    *ngIf="country?.hasError('required') && country?.touched"
+                  >
+                    Country is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>Phone Number</mat-label>
+                  <input
+                    matInput
+                    formControlName="phoneNumber"
+                    placeholder="Enter your phone number"
+                  />
+                  <mat-icon matSuffix class="text-white-50">phone_iphone</mat-icon>
+                  <mat-error
+                    *ngIf="
+                      phoneNumber?.hasError('required') && phoneNumber?.touched
+                    "
+                  >
+                    Phone Number is required.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      phoneNumber?.hasError('pattern') && phoneNumber?.touched
+                    "
+                  >
+                    Phone Number is not valid.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    [type]="isHide ? 'password' : 'text'"
+                    formControlName="password"
+                    placeholder="Enter your password"
+                  />
+                  <mat-icon
+                    matSuffix
+                    class="text-white-50"
+                    (click)="isHide = !isHide"
+                    >{{ isHide ? "visibility_off" : "visibility" }}</mat-icon
+                  >
+                  <mat-error
+                    *ngIf="password?.hasError('required') && password?.touched"
+                  >
+                    Password is required.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="password?.hasError('minlength') && password?.touched"
+                  >
+                    Password must be at least 6 characters long.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>Confirm Password</mat-label>
+                  <input
+                    matInput
+                    [type]="isHideConfirm ? 'password' : 'text'"
+                    formControlName="confirmPassword"
+                    placeholder="Confirm new password"
+                  />
+                  <mat-icon
+                    matSuffix
+                    class="text-white-50"
+                    (click)="isHideConfirm = !isHideConfirm"
+                    >{{
+                      isHideConfirm ? "visibility_off" : "visibility"
+                    }}</mat-icon
+                  >
+                  <mat-error
+                    *ngIf="
+                      confirmPassword?.hasError('required') &&
+                      confirmPassword?.touched
+                    "
+                  >
+                    Confirm password is required.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      confirmPassword?.hasError('notMatch') &&
+                      confirmPassword?.touched
+                    "
+                  >
+                    Confirm Password don't match.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <a
+                  class="second-color span-text mt-1 pointer"
+                  routerLink="/auth/verify"
+                  >Have a code?</a
+                >
+                <a
+                  class="second-color span-text mt-1 pointer"
+                  routerLink="/auth/login"
+                  >Login?</a
+                >
+              </div>
+              <button
+                class="btn-main bg-main-color second-color mt-3 w-50 mx-auto"
+                [disabled]="registerForm.invalid"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

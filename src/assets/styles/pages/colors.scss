@@ -1,0 +1,80 @@
+/* Default (Light Mode) */
+:root {
+  --main-color: #EF9B28;
+  --default-color: #4F4F4F;
+  --second-color: #fff;
+  --ternary-black-color: #0E382F;
+  --danger-color: #ac0000;
+  --bg-gray-color: #f0eeee;
+  --bg-main-color: #EF9B28;
+  --bg-second-color: #fff;
+  --bg-ternary-color: rgb(49, 89, 81);
+  --bg-sidebar-color: #0E382F;
+  --bg-danger-color: #ac0000;
+  --box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 15%);
+}
+
+/* Dark Mode */
+.dark-theme {
+  --main-color: #ffb86c;
+  --default-color: #eeeeee;
+  --second-color: #333333;
+  --ternary-black-color: #1b1b1b;
+  --danger-color: #ff5555;
+  --bg-gray-color: #2e2e2e;
+  --bg-main-color: #ffb86c;
+  --bg-second-color: #1e1e1e;
+  --bg-ternary-color: rgba(30, 30, 30, 0.9);
+  --bg-sidebar-color: #1b1b1b;
+  --bg-danger-color: #ff5555;
+  --box-shadow: 0 2px 4px 0 rgba(181, 181, 181, 0.1);
+}
+
+
+.main-color {
+  color: var(--main-color) !important;
+}
+
+.default-color {
+  color: var(--default-color) !important;
+}
+
+.second-color {
+  color: var(--second-color) !important;
+}
+
+.ternary-black-color {
+  color: var(--ternary-black-color) !important;
+}
+
+.dangerColor {
+  color: var(--danger-color) !important;
+}
+
+.bg-main-color {
+  background-color: var(--bg-main-color) !important;
+}
+
+.bg-second-color {
+  background-color: var(--bg-second-color) !important;
+}
+
+.bg-ternary-color {
+  background-color: var(--bg-ternary-color) !important;
+}
+
+.bg-sidebar-color {
+  background-color: var(--bg-sidebar-color) !important;
+}
+
+.bg-gray-color {
+  background-color: var(--bg-gray-color) !important;
+}
+
+.bg-danger-color {
+  background-color: var(--bg-danger-color) !important;
+}
+
+.box-shadow {
+  box-shadow: var(--box-shadow) !important;
+}

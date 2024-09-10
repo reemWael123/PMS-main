@@ -1,0 +1,50 @@
+.auth {
+  min-height: 100vh;
+  overflow-y: auto;
+  height: 100%;
+  font-family: "Inter", sans-serif !important;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.bg-register {
+  background-image: url(../../images/register&reset.jpeg);
+}
+
+.bg-verify {
+  background-image: url(../../images/login&verify.jpeg);
+}
+
+.bg-login {
+  background-image: url(../../images/login&verify.jpeg);
+}
+
+.bg-forget {
+  background-image: url(../../images/forget.jpeg);
+}
+
+.bg-reset {
+  background-image: url(../../images/register&reset.jpeg);
+}
+
+.auth-card {
+  background-color: rgba(49, 89, 81, 0.9);
+  padding: 30px 40px;
+  border-radius: 15px;
+}
+
+.auth .register-card {
+  background-color: rgba(49, 74, 89, 0.9);
+  padding: 30px 40px;
+  border-radius: 15px;
+}
+
+.title-auth::first-letter {
+  text-decoration: underline;
+}
+
+.span-text{
+  font-size: 13px;
+}

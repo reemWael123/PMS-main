@@ -1,0 +1,48 @@
+<section class="bg-second-color">
+  <div class="d-flex justify-content-between">
+    <div class="">
+      <img src="../../../assets/images/logoBoard.svg" class="imgLogo" />
+    </div>
+    <div
+      [matMenuTriggerFor]="profile"
+      class="avatar d-flex align-items-center justify-content-center"
+      role="button"
+    >
+      <mat-icon style="color: orange">notifications</mat-icon>|
+
+      <!-- <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+        class="bg-transparent"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu"> </mat-menu> -->
+      <img
+        src="https://upskilling-egypt.com:3003/{{ current?.imagePath }}"
+        class="p-2 rounded-circle m-0 position-relative top-0 imgProfile"
+      />
+      <div>
+        <h6 class="mb-0">{{ Username }}</h6>
+        <p class="email-text mb-0">{{ useremail }}</p>
+      </div>
+      <mat-icon style="color: orange">arrow_drop_down</mat-icon>
+
+      <mat-menu #profile="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/dashboard/update-profile">
+          <mat-icon class="main-color">update</mat-icon>
+          Update my profile
+        </button>
+        <button mat-menu-item (click)="openchangDialog()">
+          Change password
+          <mat-icon class="main-color">lock</mat-icon>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          Log out
+          <mat-icon class="text-danger">logout</mat-icon>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</section>

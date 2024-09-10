@@ -1,0 +1,72 @@
+<section class="bg-gray-color">
+  <div class="bg-second-color p-4 mb-4">
+    <h3 class="default-color mb-0">Task Board</h3>
+  </div>
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-md-4">
+        <h3 class="mb-4 default-color">To Do</h3>
+        <div
+          id="ToDo"
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList, inProgressList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="example-box"
+            *ngFor="let item of todo"
+            cdkDrag
+            [cdkDragData]="item"
+          >
+            {{ item.title }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3 class="mb-4 default-color">In Progress</h3>
+        <div
+          id="InProgress"
+          cdkDropList
+          #inProgressList="cdkDropList"
+          [cdkDropListData]="inProgress"
+          [cdkDropListConnectedTo]="[todoList, doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="example-box"
+            *ngFor="let item of inProgress"
+            cdkDrag
+            [cdkDragData]="item"
+          >
+            {{ item.title }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3 class="mb-4 default-color">Done</h3>
+        <div
+          id="Done"
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList, inProgressList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            class="example-box"
+            *ngFor="let item of done"
+            cdkDrag
+            [cdkDragData]="item"
+          >
+            {{ item.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

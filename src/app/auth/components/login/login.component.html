@@ -1,0 +1,93 @@
+<section class="auth bg-login shadow-sm d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mx-auto">
+        <div class="text-center my-2">
+          <img src="../../../../assets/images/logo.png" />
+        </div>
+        <div class="form-container auth-card">
+          <small class="text-white-50">Welcome to PMS!</small>
+          <h3 class="main-color title-auth">Login</h3>
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onLogin(loginForm)"
+          >
+            <div class="py-2">
+              <div>
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>E-mail</mat-label>
+                  <input
+                    matInput
+                    class="text-white"
+                    placeholder="Enter your e-mail"
+                    formControlName="email"
+                    required
+                  />
+                  <mat-error
+                    *ngIf="
+                      loginForm.get('email')?.touched &&
+                      loginForm.get('email')?.invalid
+                    "
+                  >
+                    {{ getEmailErrorMessage() }}
+                  </mat-error>
+                  <mat-icon matSuffix class="text-white-50">email</mat-icon>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="w-100" hideRequiredMarker>
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    class="text-white"
+                    placeholder="Enter your password"
+                    [type]="hide ? 'password' : 'text'"
+                    formControlName="password"
+                  />
+                  <button
+                    class="text-white-50"
+                    type="button"
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide = !hide"
+                  >
+                    <mat-icon>{{
+                      hide ? "visibility_off" : "visibility"
+                    }}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="loginForm.get('password')?.touched">
+                    {{ getPasswordErrorMessage() }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center mt-2 mb-3"
+            >
+              <a
+                class="second-color span-text mt-1 pointer"
+                routerLink="/auth/register"
+                >Register now?</a
+              >
+              <a
+                class="second-color span-text mt-1 pointer"
+                routerLink="/auth/forgetPassword"
+                >Forgot password?</a
+              >
+            </div>
+
+            <div class="text-center">
+              <button
+              class="w-50 btn-main bg-main-color"
+              [ngClass]="loginForm.status === 'VALID' ? 'text-white' : ''"
+              [disabled]="loginForm.status === 'INVALID' ? true : false"
+            >
+              Login
+            </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+section {
+  height: 100%;
+
+  .box-table {
+    min-height: 50vh;
+  }
+
+  ::ng-deep td {
+    padding: 20px !important;
+  }
+}

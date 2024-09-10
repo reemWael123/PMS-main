@@ -1,0 +1,75 @@
+<section class="bg-gray-color pb-5">
+  <div
+    class="row m-0 justify-content-between align-items-center bg-second-color p-4"
+  >
+    <div class="col-6">
+      <h3 class="default-color mb-0">Users</h3>
+    </div>
+  </div>
+  <div class="container-fluid mt-3">
+    <div class="box-shadow rounded-3 overflow-hidden box-table">
+      <div
+        class="bg-second-color d-flex align-items-center justify-content-between p-4"
+      >
+        <mat-form-field class="col-5 main-color rounded-4 overflow-hidden">
+          <mat-label>Search here</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Search by {{ searchType }}"
+            [(ngModel)]="searchKey"
+            (keydown.enter)="getUsers()"
+          />
+          <mat-hint class="default-color">Please press enter</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col-3 main-color rounded-4 overflow-hidden">
+          <mat-label>Search Type</mat-label>
+          <mat-select [(ngModel)]="searchType">
+            <mat-option value="userName">Username</mat-option>
+            <mat-option value="email">Email</mat-option>
+            <mat-option value="country">Country</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-3 main-color rounded-4 overflow-hidden">
+          <mat-label>Roles</mat-label>
+          <mat-select [(ngModel)]="role" (selectionChange)="getUsers()">
+            <mat-option value="">All</mat-option>
+            <mat-option value="1">Manager</mat-option>
+            <mat-option value="2">Employee</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <a
+          class="pointer d-flex align-items-center"
+          (click)="reset()"
+          *ngIf="searchKey !== '' || searchType !== '' || role !== ''"
+        >
+          <mat-icon matSuffix class="main-color">restart_alt</mat-icon>
+          <span class="default-color">Reset</span>
+        </a>
+      </div>
+
+      <app-table
+        [headList]="headArray"
+        [gridList]="usersList"
+        (actionClick)="onActionClick($event.action, $event.item)"
+      >
+      </app-table>
+
+      <mat-paginator
+        *ngIf="usersList"
+        #paginator
+        class="demo-paginator"
+        (page)="handlePageEvent($event)"
+        [length]="usersList.totalNumberOfRecords"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+section {
+    box-shadow: var(--box-shadow);
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 15px;
+
+    .email-text {
+        font-size: 13px;
+        color: #8b8b8b;
+    }
+}
+
+.imgProfile {
+    height: 60px;
+    width: 60px;
+}
+
+.imgLogo {
+    height: 100%;
+    width: 200px;
+}
+
+.mat-mdc-menu-item {
+    width: 17rem !important;
+}
+
+.mat-mdc-menu-panel {
+    min-width: 150px !important;
+    max-width: 350px !important;
+}

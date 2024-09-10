@@ -1,0 +1,77 @@
+<section class="bg-gray-color">
+    <div class="bg-white  d-flex align-items-center" style="height: 109px;">
+        <div class="p-3">
+            <p class="d-flex align-items-center">
+                <button mat-button routerLink="/dashboard/manager/tasks">
+                    <mat-icon>chevron_left</mat-icon> <span class="ms-2">View All Tasks</span>
+                </button>
+            </p>
+            <h3 class="fs-5 fw-semibold px-3">{{titleTask}}</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-9 mx-auto">
+                <div class="addEditView-card shadow">
+                    <form [formGroup]="addNewForm" (ngSubmit)="onSubmitForm(addNewForm)">
+                        <div class="my-3">
+                            <mat-form-field class="w-100">
+                                <mat-label>Title</mat-label>
+                                <input matInput formControlName="title">
+                                <mat-error *ngIf="addNewForm.get('title')?.touched">
+                                    {{ getTitleErrorMessage() }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="my-3">
+                            <mat-form-field class="w-100">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput formControlName="description"></textarea>
+                                <mat-error *ngIf="addNewForm.get('description')?.touched">
+                                    {{ getDescriptionErrorMessage() }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="my-3 row justify-content-between">
+                            <mat-form-field class="col-md-6">
+                                <mat-label>Employees</mat-label>
+                                <mat-select formControlName="employeeId">
+                                    <mat-option *ngFor="let item of allEmployees" [value]="item.id">
+                                        {{item.email}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="addNewForm.get('employeeId')?.touched || addNewForm.get('employeeId')?.hasError('min')">
+                                    {{ getEmployeeErrorMessage() }}
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md-6">
+                                <mat-label>Projects</mat-label>
+                                <mat-select formControlName="projectId">
+                                    <mat-option *ngFor="let item of allProjects" [value]="item.id">
+                                        {{item.title}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="addNewForm.get('projectId')?.touched || addNewForm.get('projectId')?.hasError('min')">
+                                    {{ getProjectErrorMessage() }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="my-3 d-flex justify-content-between align-items-center"
+                            [ngClass]="{'d-none':titleTask==='View Task'}">
+                            <div class="w-25">
+                                <button class="w-100 btn-main" type="button" (click)="onCancel()"
+                                    [disabled]="taskId>0">Cancel</button>
+                            </div>
+                            <div class="w-25">
+                                <button class="w-100 btn-main bg-main-color"
+                                    [disabled]="addNewForm.invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

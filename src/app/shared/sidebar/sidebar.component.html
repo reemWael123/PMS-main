@@ -1,0 +1,25 @@
+<section
+  class="bg-sidebar-color side-bar overflow-y-auto pt-5 position-relative"
+  >
+  <div
+    class="position-absolute toggle bg-main-color second-color d-flex align-items-center justify-content-center pointer"
+    (click)="sendData()"
+  >
+    <mat-icon matSuffix *ngIf="!toggler">chevron_left</mat-icon>
+    <mat-icon matSuffix *ngIf="toggler">chevron_right</mat-icon>
+  </div>
+  <div class="menu">
+    <ng-container *ngFor="let item of menu">
+      <a
+        *ngIf="item.isActive"
+        class="item py-3 px-4"
+        [class]="toggler ? 'justify-content-center' : null"
+        [routerLink]="item.link"
+        routerLinkActive="active"
+      >
+        <mat-icon matSuffix>{{ item.icon }}</mat-icon>
+        <span *ngIf="!toggler">{{ item.title }}</span>
+      </a>
+    </ng-container>
+  </div>
+</section>

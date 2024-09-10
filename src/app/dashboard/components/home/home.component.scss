@@ -1,0 +1,66 @@
+section {
+    height: 100%;
+}
+
+.sec1 {
+    background-image: url('../../../../assets/images/project-bg.jpeg');
+    background-size: cover;
+    background-position: center center;
+
+    span {
+        color: var(--main-color);
+    }
+}
+
+
+.titel {
+    border-left: orange 5px solid;
+}
+
+.first {
+    background: #E5E6F4;
+
+    .icon1 {
+        background: #CFD1EC;
+    }
+}
+
+.second {
+    background: #F4F4E5;
+
+    .icon2 {
+        background: #E4E4BC;
+    }
+
+}
+
+.third {
+    background: #F4E5ED;
+
+    .icon3 {
+        background: #E7C3D7;
+    }
+}
+
+
+.child {
+    width: 180px;
+    height: 100%;
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    p {
+        color: #6F7881;
+    }
+}
+
+.chart{
+    width: 200px;
+}
